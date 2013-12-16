@@ -36,17 +36,6 @@ public class MusicFilesListBuilderTest {
         assertThat(musicFilesListBuilder.isMusicFilesFound()).isTrue();
     }
 
-    @Test
-    public void shouldBuildListOfDirectoriesContainingMusicFiles() throws IOException {
-        Path basePath = createPath();
-
-        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
-
-        List<MusicDirectoryModel> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
-
-        assertThat(directoriesWithMusicFiles.size()).isEqualTo(1);
-    }
-
     private Path createPath() {
         return FileSystems.getDefault().getPath("C:\\project\\music-library-fixer\\src\\test\\resources");
     }

@@ -1,12 +1,12 @@
 package org.musiclibfixer;
 
-import org.musiclibrayfixer.MusicDirectoryModel;
+import org.musiclibrayfixer.model.MusicDirectoryModel;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class MusicDirectoryFinder {
@@ -14,10 +14,9 @@ public class MusicDirectoryFinder {
     public List<MusicDirectoryModel> findDirectoriesContainingMusicFiles(Path basePath) throws IOException {
         List<MusicDirectoryModel> directoriesWithMusicFiles = new ArrayList<MusicDirectoryModel>();
 
-        Iterator<Path> pathIterator = Files.newDirectoryStream(basePath).iterator();
+        DirectoryStream<Path> directoryStream = Files.newDirectoryStream(basePath);
 
-        while(pathIterator.hasNext()) {
-            Path next = pathIterator.next();
+        for(Path next : directoryStream) {
 
             MusicFilesListBuilder musicFilesListBuilder = new MusicFilesListBuilder();
 
@@ -32,6 +31,7 @@ public class MusicDirectoryFinder {
                 directoriesWithMusicFiles.add(musicDirectoryModel);
             }
         }
+
         return directoriesWithMusicFiles;
     }
 
