@@ -1,5 +1,6 @@
 package org.musiclibrayfixer;
 
+import com.mpatric.mp3agic.*;
 import org.junit.Test;
 import org.musiclibfixer.MusicDirectoryFinder;
 import org.musiclibrayfixer.model.MusicDirectoryModel;
@@ -14,7 +15,7 @@ import static org.fest.assertions.Assertions.assertThat;
 public class MusicDirectoryFinderTest {
 
     @Test
-    public void shouldBuildListOfDirectoriesContainingMusicFiles() throws IOException {
+    public void shouldBuildListOfOneMusicDirectoryModel() throws IOException {
         Path basePath = createPath();
 
         MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
@@ -22,6 +23,39 @@ public class MusicDirectoryFinderTest {
         List<MusicDirectoryModel> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
 
         assertThat(directoriesWithMusicFiles.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldReturnOneMusicFileWhenGivenDirectoryWithOneMusicFile() throws IOException {
+        Path basePath = createPath();
+
+        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
+
+        List<MusicDirectoryModel> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
+
+        assertThat(directoriesWithMusicFiles.get(0).getMusicFiles().size()).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldReturnPathToMusicFileWhenGivenDirectoryWithOneMusicFile() throws IOException {
+        Path basePath = createPath();
+
+        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
+
+        List<MusicDirectoryModel> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
+
+        assertThat(directoriesWithMusicFiles.get(0).getPath().toString()).endsWith("src\\test\\resources\\test-directory2");
+    }
+
+    @Test
+    public void shouldReturnReadableStringWhenGivenDirectoryWithOneMusicFile() throws IOException {
+        Path basePath = createPath();
+
+        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
+
+        List<MusicDirectoryModel> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
+
+        assertThat(directoriesWithMusicFiles.get(0).toString()).isEqualToIgnoringCase("MusicDirectoryModel{Amout of Music files found = 1, path=C:\\project\\music-library-fixer\\src\\test\\resources\\test-directory2}\n");
     }
 
     private Path createPath() {
