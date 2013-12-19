@@ -1,6 +1,6 @@
 package org.musiclibfixer;
 
-import org.musiclibrayfixer.model.MusicDirectoryModel;
+import org.musiclibrayfixer.model.MusicDirectory;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -11,8 +11,8 @@ import java.util.List;
 
 public class MusicDirectoryFinder {
 
-    public List<MusicDirectoryModel> findDirectoriesContainingMusicFiles(Path basePath) throws IOException {
-        List<MusicDirectoryModel> directoriesWithMusicFiles = new ArrayList<MusicDirectoryModel>();
+    public List<MusicDirectory> findDirectoriesContainingMusicFiles(Path basePath) throws IOException {
+        List<MusicDirectory> directoriesWithMusicFiles = new ArrayList<MusicDirectory>();
 
         DirectoryStream<Path> directoryStream = Files.newDirectoryStream(basePath);
 
@@ -23,12 +23,12 @@ public class MusicDirectoryFinder {
             Files.walkFileTree(next, musicFilesListBuilder);
 
             if(musicFilesListBuilder.isMusicFilesFound()) {
-                MusicDirectoryModel musicDirectoryModel = new MusicDirectoryModel();
+                MusicDirectory musicDirectory = new MusicDirectory();
 
-                musicDirectoryModel.setPath(next);
-                musicDirectoryModel.setMusicFiles(musicFilesListBuilder.getFiles());
+                musicDirectory.setPath(next);
+                musicDirectory.setMusicFiles(musicFilesListBuilder.getFiles());
 
-                directoriesWithMusicFiles.add(musicDirectoryModel);
+                directoriesWithMusicFiles.add(musicDirectory);
             }
         }
 

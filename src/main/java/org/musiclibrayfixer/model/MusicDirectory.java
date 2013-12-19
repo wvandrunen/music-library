@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicDirectoryModel {
+public class MusicDirectory {
 
     private List<String> musicFiles = new ArrayList<String>();
     private Path path;
@@ -27,7 +27,7 @@ public class MusicDirectoryModel {
 
     @Override
     public String toString() {
-        return "MusicDirectoryModel{" +
+        return "MusicDirectory{" +
                 "Amout of Music files found = " + musicFiles.size() +
                 ", path=" + path +
                 "}\n";
