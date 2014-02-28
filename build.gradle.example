@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+// Change default directory to target from build
+
+buildDir = 'target'
+
+ext {
+}
+
+group = 'music-library-fixer'
+version = '1.0-SNAPSHOT'
+
+repositories {
+	// First check local cache before accessing central repository
+	maven {
+		url "file:///" + localRepoDir + "/.m2/repository"
+	}
+	mavenCentral()
+}
+
+configurations {
+	provided
+	testCompile.extendsFrom provided
+	compile.transitive = true
+}
+
+dependencies {
+
+	compile(
+		[group: 'org.springframework.data', name : 'spring-data-mongodb',  version: '1.3.3.RELEASE'],
+		[group: 'com.mpatric', name : 'mp3agic',  version: '0.8.2'],
+		[group: 'log4j', name : 'log4j',  version: '1.2.17'],
+		[group: 'commons-io', name : 'commons-io',  version: '2.2']
+	)
+
+	provided(
+	)
+
+	testCompile(
+		[group: 'junit', name : 'junit', version : '4.11'],
+		[group: 'org.easytesting', name : 'fest-assert', version : '1.4']
+	)
+	runtime()
+}
+
+// Added the provided dependency to compile classpath
+sourceSets.main.compileClasspath += configurations.provided
+

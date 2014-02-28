@@ -10,6 +10,7 @@ import org.musiclibrayfixer.model.MusicFile;
 import java.io.IOException;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class MusicFileMapperTest {
 
@@ -33,5 +34,11 @@ public class MusicFileMapperTest {
     public void shouldSetTrackTitleWhenGivenMp3File() throws InvalidDataException, IOException, UnsupportedTagException {
         MusicFile musicFile = musicFileMapper.map(mp3File);
         assertThat(musicFile.getTrackTitle()).isNotNull();
+    }
+
+    @Test
+    public void shouldSetReleaseTitleWhenGivenMp3File() throws InvalidDataException, IOException, UnsupportedTagException {
+        MusicFile musicFile = musicFileMapper.map(mp3File);
+        assertThat(musicFile.getReleaseTitle()).isNotNull();
     }
 }
