@@ -1,7 +1,7 @@
 package org.musiclibfixer.mapper;
 
 import com.mpatric.mp3agic.Mp3File;
-import org.musiclibrayfixer.model.MusicFile;
+import org.musiclibfixer.model.MusicFile;
 
 public class MusicFileMapper {
 
@@ -9,6 +9,8 @@ public class MusicFileMapper {
         MusicFile musicFile = new MusicFile();
 
         musicFile.setArtist(mp3File.getId3v2Tag().getArtist());
+        musicFile.setTrackTitle(mp3File.getId3v2Tag().getTitle());
+        musicFile.setReleaseTitle(mp3File.getId3v2Tag().getAlbum());
 
         return musicFile;
     }

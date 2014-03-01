@@ -5,7 +5,7 @@ import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
 import org.junit.Before;
 import org.junit.Test;
-import org.musiclibrayfixer.model.MusicFile;
+import org.musiclibfixer.model.MusicFile;
 
 import java.io.IOException;
 

@@ -1,6 +1,7 @@
-package org.musiclibfixer;
+package org.musiclibfixer.scanner;
 
-import org.musiclibrayfixer.model.MusicDirectory;
+import org.musiclibfixer.model.MusicDirectory;
+import org.musiclibfixer.scanner.MusicFilesListBuilder;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;

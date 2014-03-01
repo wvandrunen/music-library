@@ -1,15 +1,12 @@
-package org.musiclibrayfixer;
+package org.musiclibfixer.scanner;
 
 import org.junit.Test;
-import org.musiclibfixer.MusicDirectoryFinder;
-import org.musiclibfixer.MusicFilesListBuilder;
+import org.musiclibfixer.scanner.MusicFilesListBuilder;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;

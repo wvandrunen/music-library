@@ -1,4 +1,4 @@
-package org.musiclibrayfixer.model;
+package org.musiclibfixer.model;
 
 import org.springframework.data.annotation.Id;
 
@@ -7,9 +7,9 @@ public class MusicFile {
     @Id
     private String id;
 
-    private String trackTitle= "";
-    private String artist= "";
-    private String releaseTitle = "";
+    private String trackTitle;
+    private String artist;
+    private String releaseTitle;
 
     public MusicFile() {
     }
@@ -106,20 +106,15 @@ public class MusicFile {
         this.artist = artist;
     }
 
-    @Override
-    public String toString() {
-        return "MusicFile{" +
-                "id='" + id + '\'' +
-                ", trackTitle='" + trackTitle + '\'' +
-                ", artist='" + artist + '\'' +
-                '}';
-    }
-
     public String getReleaseTitle() {
         return releaseTitle;
     }
 
     public void setReleaseTitle(String releaseTitle) {
         this.releaseTitle = releaseTitle;
+    }
+
+    public String getId() {
+        return id;
     }
 }

@@ -1,4 +1,4 @@
-package org.musiclibrayfixer.model;
+package org.musiclibfixer.model;
 
 import java.nio.file.Path;
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
-package org.musiclibrayfixer;
+package org.musiclibfixer.scanner;
 
 import org.junit.Test;
-import org.musiclibfixer.MusicDirectoryFinder;
-import org.musiclibrayfixer.model.MusicDirectory;
+import org.musiclibfixer.model.MusicDirectory;
+import org.musiclibfixer.scanner.MusicDirectoryFinder;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;

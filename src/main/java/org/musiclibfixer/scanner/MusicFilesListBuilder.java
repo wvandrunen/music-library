@@ -1,4 +1,4 @@
-package org.musiclibfixer;
+package org.musiclibfixer.scanner;
 
 import org.apache.log4j.Logger;
 
