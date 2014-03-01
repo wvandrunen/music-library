@@ -3,6 +3,13 @@ apply plugin: 'application'
 
 buildDir = 'target'
 
+sourceCompatibility=JavaVersion.VERSION_1_8
+targetCompatibility=JavaVersion.VERSION_1_8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
