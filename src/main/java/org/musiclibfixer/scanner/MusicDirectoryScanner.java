@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicDirectoryFinder {
+public class MusicDirectoryScanner {
 
     public List<MusicDirectory> findDirectoriesContainingMusicFiles(Path basePath) throws IOException {
         List<MusicDirectory> directoriesWithMusicFiles = new ArrayList<MusicDirectory>();

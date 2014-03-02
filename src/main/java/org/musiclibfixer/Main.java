@@ -8,7 +8,7 @@ import org.musiclibfixer.dao.MusicFileDao;
 import org.musiclibfixer.mapper.MusicFileMapper;
 import org.musiclibfixer.model.MusicDirectory;
 import org.musiclibfixer.model.MusicFile;
-import org.musiclibfixer.scanner.MusicDirectoryFinder;
+import org.musiclibfixer.scanner.MusicDirectoryScanner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
@@ -24,9 +24,9 @@ public class Main {
 
         MusicFileDao musicFileDao = ctx.getBean(MongoDBMusicFileDao.class);
         MusicFileMapper musicFileMapper = new MusicFileMapper();
-        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
+        MusicDirectoryScanner musicDirectoryScanner = new MusicDirectoryScanner();
 
-        List<MusicDirectory> musicDirectories = musicDirectoryFinder.findDirectoriesContainingMusicFiles(FileSystems.getDefault().getPath("Y:\\"));
+        List<MusicDirectory> musicDirectories = musicDirectoryScanner.findDirectoriesContainingMusicFiles(FileSystems.getDefault().getPath("Y:\\"));
 
         for(MusicDirectory musicDirectory : musicDirectories) {
             for (String file : musicDirectory.getMusicFiles()) {

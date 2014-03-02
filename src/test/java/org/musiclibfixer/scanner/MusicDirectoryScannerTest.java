@@ -10,15 +10,15 @@ import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class MusicDirectoryFinderTest {
+public class MusicDirectoryScannerTest {
 
     @Test
     public void shouldBuildListOfOneMusicDirectoryModel() throws IOException {
         Path basePath = createPath();
 
-        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
+        MusicDirectoryScanner musicDirectoryScanner = new MusicDirectoryScanner();
 
-        List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
+        List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryScanner.findDirectoriesContainingMusicFiles(basePath);
 
         assertThat(directoriesWithMusicFiles.size()).isEqualTo(1);
     }
@@ -27,9 +27,9 @@ public class MusicDirectoryFinderTest {
     public void shouldReturnOneMusicFileWhenGivenDirectoryWithOneMusicFile() throws IOException {
         Path basePath = createPath();
 
-        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
+        MusicDirectoryScanner musicDirectoryScanner = new MusicDirectoryScanner();
 
-        List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
+        List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryScanner.findDirectoriesContainingMusicFiles(basePath);
 
         assertThat(directoriesWithMusicFiles.get(0).getMusicFiles().size()).isEqualTo(1);
     }
@@ -38,9 +38,9 @@ public class MusicDirectoryFinderTest {
     public void shouldReturnPathToMusicFileWhenGivenDirectoryWithOneMusicFile() throws IOException {
         Path basePath = createPath();
 
-        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
+        MusicDirectoryScanner musicDirectoryScanner = new MusicDirectoryScanner();
 
-        List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
+        List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryScanner.findDirectoriesContainingMusicFiles(basePath);
 
         assertThat(directoriesWithMusicFiles.get(0).getPath().toString()).endsWith("src\\test\\resources\\test-directory2");
     }
@@ -49,9 +49,9 @@ public class MusicDirectoryFinderTest {
     public void shouldReturnReadableStringWhenGivenDirectoryWithOneMusicFile() throws IOException {
         Path basePath = createPath();
 
-        MusicDirectoryFinder musicDirectoryFinder = new MusicDirectoryFinder();
+        MusicDirectoryScanner musicDirectoryScanner = new MusicDirectoryScanner();
 
-        List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryFinder.findDirectoriesContainingMusicFiles(basePath);
+        List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryScanner.findDirectoriesContainingMusicFiles(basePath);
 
         assertThat(directoriesWithMusicFiles.get(0).toString()).isEqualToIgnoringCase("MusicDirectory{Amout of Music files found = 1, path=C:\\project\\music-library-fixer\\src\\test\\resources\\test-directory2}\n");
     }
