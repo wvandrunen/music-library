@@ -28,17 +28,22 @@ public class Main {
 
         List<MusicDirectory> musicDirectories = musicDirectoryScanner.findDirectoriesContainingMusicFiles(FileSystems.getDefault().getPath("Y:\\"));
 
-        for(MusicDirectory musicDirectory : musicDirectories) {
-            for (String file : musicDirectory.getMusicFiles()) {
+        musicDirectories.forEach(dir -> {
+            dir.getMusicFiles().forEach(file -> {
 
                 long startReadingFile = System.currentTimeMillis();
-                MusicFile musicFile = musicFileMapper.map(new Mp3File(file));
+                MusicFile musicFile = null;
+                try {
+                    musicFile = musicFileMapper.map(new Mp3File(file));
+                } catch (IOException | UnsupportedTagException | InvalidDataException e) {
+                    e.printStackTrace();
+                }
                 long endReadingFile = System.currentTimeMillis();
                 musicFileDao.insert(musicFile);
                 long endWritingToMongo = System.currentTimeMillis();
 
                 System.out.println("Reading file took [" + (endReadingFile - startReadingFile) + "] Write file took [" + (endWritingToMongo - endReadingFile) + "]");
-            }
-        }
+            });
+        });
     }
 }
