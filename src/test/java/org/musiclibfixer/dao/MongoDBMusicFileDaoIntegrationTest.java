@@ -36,7 +36,7 @@ public class MongoDBMusicFileDaoIntegrationTest {
     public void whenMusicFileInsertedGivenMusicFileThenSavedToMongoDB() {
         MusicFileDao musicFileDao = new MongoDBMusicFileDao(mongoOperations, musicCollection);
 
-        MusicFile musicFile = new MusicFile("Sick Again", "Led Zeppelin", "Physical Graffiti");
+        MusicFile musicFile = new MusicFile("Sick Again", "Led Zeppelin", "Physical Graffiti", "File Path");
 
         MusicFile musicFileWithObjectId = musicFileDao.insert(musicFile);
 

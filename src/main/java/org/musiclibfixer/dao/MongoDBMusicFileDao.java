@@ -13,6 +13,10 @@ public class MongoDBMusicFileDao implements MusicFileDao {
     private String targetCollection;
 
     @Autowired
+    public MongoDBMusicFileDao(MongoOperations mongoOperations) {
+        this(mongoOperations, MongoCollectionNames.MUSIC_COLLECTION_NAME);
+    }
+
     public MongoDBMusicFileDao(MongoOperations mongoOperations, String targetCollection) {
         this.mongoOperations = mongoOperations;
         this.targetCollection = targetCollection;

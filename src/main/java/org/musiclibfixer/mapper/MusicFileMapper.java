@@ -8,6 +8,7 @@ public class MusicFileMapper {
     public MusicFile map(Mp3File mp3File) {
         MusicFile musicFile = new MusicFile();
 
+        musicFile.setPath(mp3File.getFilename());
         musicFile.setArtist(mp3File.getId3v2Tag().getArtist());
         musicFile.setTrackTitle(mp3File.getId3v2Tag().getTitle());
         musicFile.setReleaseTitle(mp3File.getId3v2Tag().getAlbum());

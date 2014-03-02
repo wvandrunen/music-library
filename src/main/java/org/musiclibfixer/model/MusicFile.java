@@ -10,14 +10,16 @@ public class MusicFile {
     private String trackTitle;
     private String artist;
     private String releaseTitle;
+    private String path;
 
     public MusicFile() {
     }
 
-    public MusicFile(String trackTitle, String artist, String releaseTitle) {
+    public MusicFile(String trackTitle, String artist, String releaseTitle, String path) {
         this.trackTitle = trackTitle;
         this.artist = artist;
         this.releaseTitle = releaseTitle;
+        this.path = path;
     }
 
 
@@ -116,5 +118,13 @@ public class MusicFile {
 
     public String getId() {
         return id;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }
