@@ -1,7 +1,6 @@
 package org.musiclibfixer.scanner;
 
 import org.junit.Test;
-import org.musiclibfixer.scanner.MusicFilesListBuilder;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;

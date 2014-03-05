@@ -3,7 +3,6 @@ package org.musiclibfixer.config;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
-import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
