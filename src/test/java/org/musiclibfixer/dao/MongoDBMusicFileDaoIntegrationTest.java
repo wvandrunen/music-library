@@ -6,7 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mongodb.morphia.Key;
 import org.musiclibfixer.config.MongoCollectionNames;
-import org.musiclibfixer.config.SpringMongoConfig;
+import org.musiclibfixer.config.SpringApplicationConfig;
 import org.musiclibfixer.model.MusicFile;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -24,8 +24,8 @@ public class MongoDBMusicFileDaoIntegrationTest {
 
     @BeforeClass
     public static void setUp() throws UnknownHostException {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
-        ctx.register(MongoDBMusicFileDao.class, SpringMongoConfig.class);
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringApplicationConfig.class);
+        ctx.register(MongoDBMusicFileDao.class, SpringApplicationConfig.class);
 
         musicFileDao = ctx.getBean(MongoDBMusicFileDao.class);
         mongo = ctx.getBean(MongoClient.class);
