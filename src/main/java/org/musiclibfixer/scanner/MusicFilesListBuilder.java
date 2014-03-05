@@ -12,12 +12,12 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MusicFilesListBuilder extends SimpleFileVisitor<Path> {
 
-    private static Logger LOG = LoggerFactory.getLogger(MusicFilesListBuilder.class);
     public static final String FILE_EXTENSION = ".mp3";
-
+    private static Logger LOG = LoggerFactory.getLogger(MusicFilesListBuilder.class);
     private boolean musicFilesFound = false;
     private List<String> files;
 
@@ -33,19 +33,23 @@ public class MusicFilesListBuilder extends SimpleFileVisitor<Path> {
 
         List<File> filesFound = new ArrayList<File>();
 
-        list.forEach(fileInDirectory ->  {
+        list.forEach(fileInDirectory -> {
             File file = new File(fileInDirectory);
             filesFound.add(file);
         });
 
-        filesFound.stream().filter( file -> !file.isDirectory() && file.getAbsolutePath().endsWith(FILE_EXTENSION)).forEach(file -> {
-            LOG.debug("Checking file [" + file.getAbsolutePath() + "]");
+        list.stream().map( f -> {
+            return new File(f);
+        }).collect(Collectors.toList());
 
-            File deeplink = new File(dir.toString() + "\\" + file.toString());
-            files.add(deeplink.getAbsolutePath());
-        });
+        filesFound.stream().filter(file -> !file.isDirectory() && file.getAbsolutePath().endsWith(FILE_EXTENSION))
+            .forEach(file -> {
+                LOG.debug("Checking file [" + file.getAbsolutePath() + "]");
+                File deeplink = new File(dir.toString() + "\\" + file.toString());
+                files.add(deeplink.getAbsolutePath());
+            });
 
-        if(files.size() > 0) {
+        if (files.size() > 0) {
             musicFilesFound = true;
         }
 

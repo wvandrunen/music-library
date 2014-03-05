@@ -1,7 +1,9 @@
 package org.musiclibfixer.model;
 
-import org.springframework.data.annotation.Id;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
+@Entity
 public class MusicFile {
 
     @Id
@@ -21,6 +23,10 @@ public class MusicFile {
         this.releaseTitle = releaseTitle;
         this.path = path;
     }
+
+
+
+
 
 
     /*

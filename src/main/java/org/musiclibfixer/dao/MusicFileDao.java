@@ -4,6 +4,6 @@ import org.musiclibfixer.model.MusicFile;
 
 public interface MusicFileDao {
 
-    public MusicFile insert(MusicFile musicFile);
+    public MusicFile upsert(MusicFile musicFile);
 
 }

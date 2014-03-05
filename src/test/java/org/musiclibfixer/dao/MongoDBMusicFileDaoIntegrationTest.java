@@ -1,13 +1,17 @@
 package org.musiclibfixer.dao;
 
+import com.mongodb.MongoClient;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mongodb.morphia.Key;
 import org.musiclibfixer.config.MongoCollectionNames;
 import org.musiclibfixer.config.SpringMongoConfig;
 import org.musiclibfixer.model.MusicFile;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.data.mongodb.core.MongoOperations;
+
+import java.net.UnknownHostException;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -16,29 +20,29 @@ import static org.fest.assertions.Assertions.assertThat;
  */
 public class MongoDBMusicFileDaoIntegrationTest {
 
-    private MongoOperations mongoOperations = null;
-    private String musicCollection;
+    private static MongoClient mongo;
+    private static MongoDBMusicFileDao musicFileDao;
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() throws UnknownHostException {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
-        mongoOperations = (MongoOperations) ctx.getBean("mongoTemplate");
+        ctx.register(MongoDBMusicFileDao.class, SpringMongoConfig.class);
 
-        musicCollection = MongoCollectionNames.MUSIC_COLLECTION_NAME_INTEGRATION_TEST;
+        musicFileDao = ctx.getBean(MongoDBMusicFileDao.class);
+        mongo = ctx.getBean(MongoClient.class);
     }
 
     @After
     public void tearDown() {
-        mongoOperations.dropCollection(musicCollection);
+        mongo.getDB("music-db").getCollection(MongoCollectionNames.MUSIC_COLLECTION_NAME_INTEGRATION_TEST).drop();
+
     }
 
     @Test
     public void whenMusicFileInsertedGivenMusicFileThenSavedToMongoDB() {
-        MusicFileDao musicFileDao = new MongoDBMusicFileDao(mongoOperations, musicCollection);
-
         MusicFile musicFile = new MusicFile("Sick Again", "Led Zeppelin", "Physical Graffiti", "File Path");
 
-        MusicFile musicFileWithObjectId = musicFileDao.insert(musicFile);
+        Key<MusicFile> musicFileWithObjectId = musicFileDao.save(musicFile);
 
         assertThat(musicFileWithObjectId.getId()).isNotNull();
     }
