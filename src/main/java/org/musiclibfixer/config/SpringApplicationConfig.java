@@ -30,7 +30,7 @@ public class SpringApplicationConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("/");
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/**");
     }
 
     @Bean
