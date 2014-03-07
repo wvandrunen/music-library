@@ -22,7 +22,12 @@ public class IndexController {
     }
 
     @RequestMapping(value="/", produces="application/json")
-    public @ResponseBody List<MusicFile> index(@RequestParam(value = "page", defaultValue = "1") int page) {
+    @ResponseBody
+    public List<MusicFile> index(@RequestParam(value = "page", defaultValue = "1") int page) {
+        if(page < 1) {
+            throw new IllegalArgumentException();
+        }
+
         QueryPager<MusicFile> queryPager = mongoDBMusicFileDao.getAll();
 
         return queryPager.getPage(page);

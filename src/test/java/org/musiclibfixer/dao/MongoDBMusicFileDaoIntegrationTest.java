@@ -2,6 +2,7 @@ package org.musiclibfixer.dao;
 
 import com.mongodb.MongoClient;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mongodb.morphia.Key;
@@ -31,8 +32,8 @@ public class MongoDBMusicFileDaoIntegrationTest {
 
     }
 
-    @After
-    public void tearDown() {
+    @AfterClass
+    public static void tearDown() {
         mongo.getDB("music-db").getCollection(MongoCollectionNames.MUSIC_COLLECTION_NAME_INTEGRATION_TEST).drop();
     }
 
@@ -43,6 +44,11 @@ public class MongoDBMusicFileDaoIntegrationTest {
         Key<MusicFile> musicFileWithObjectId = musicFileDao.save(musicFile);
 
         assertThat(musicFileWithObjectId.getId()).isNotNull();
+    }
+
+    @Test
+    public void getAllShouldReturnOneMusicFile() {
+        //assertThat(musicFileDao.getAll().getPageCount()).isEqualTo(1);
     }
 
 }
