@@ -7,6 +7,7 @@ import org.mongodb.morphia.query.Query;
 import org.musiclibfixer.dao.MongoDBMusicFileDao;
 import org.musiclibfixer.dao.QueryPager;
 import org.musiclibfixer.model.MusicFile;
+import org.musiclibfixer.web.controller.IndexController;
 
 import java.util.ArrayList;
 import java.util.List;
