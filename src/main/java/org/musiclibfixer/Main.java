@@ -3,6 +3,7 @@ package org.musiclibfixer;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
+import org.musiclibfixer.config.SpringApplicationConfig;
 import org.musiclibfixer.dao.MongoDBMusicFileDao;
 import org.musiclibfixer.mapper.MusicFileMapper;
 import org.musiclibfixer.model.MusicDirectory;
@@ -21,9 +22,7 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException, InvalidDataException, UnsupportedTagException {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.scan("org.musiclibfixer");
-        ctx.refresh();
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringApplicationConfig.class);
 
         MongoDBMusicFileDao musicFileDao = ctx.getBean(MongoDBMusicFileDao.class);
         MusicFileMapper musicFileMapper = new MusicFileMapper();
@@ -36,14 +35,16 @@ public class Main {
         musicDirectories.forEach(dir -> {
             dir.getMusicFiles().forEach(file -> {
                 try {
+
                     long startReadingFile = System.currentTimeMillis();
 
+                    System.out.println("Search file in MongoDB instance... " + file);
                     MusicFile musicFile = musicFileDao.findOne("path", file);
 
-                    System.out.println(musicFile.getArtist());
-
+                    System.out.println("Mapping file... " + file);
                     musicFile = musicFileMapper.map(new Mp3File(file));
 
+                    System.out.println("Saving file in MongoDB instance...");
                     musicFileDao.save(musicFile);
 
                     long endReadingFile = System.currentTimeMillis();

@@ -1,5 +1,6 @@
 package org.musiclibfixer.config;
 
+import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
@@ -15,30 +16,26 @@ import java.net.UnknownHostException;
 import static java.util.Arrays.asList;
 
 @Configuration
-@EnableWebMvc
-@ComponentScan(basePackages = {"org.musiclibfixer"})
+@ComponentScan({"org.musiclibfixer"})
 public class SpringApplicationConfig extends WebMvcConfigurerAdapter {
 
     public @Bean Morphia createMorphia() {
         return new Morphia().mapPackage("org.musiclibfixer");
     }
 
-    public @Bean MongoClient createMongo() throws UnknownHostException {
+    public @Bean
+    Mongo createMongo() throws UnknownHostException {
+        return createLocalMongoClient();
+    }
+
+    private Mongo createRemoteMongoClient() throws UnknownHostException {
         MongoCredential credential = MongoCredential.createMongoCRCredential("admin", "music-db", "admin".toCharArray());
         return new MongoClient(new ServerAddress("ds057877.mongolab.com", 57877), asList(credential));
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("/static/**");
-    }
 
-    @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/");
-        resolver.setSuffix(".jsp");
-        return resolver;
+    public MongoClient createLocalMongoClient() throws UnknownHostException {
+        return new MongoClient();
     }
 
 }

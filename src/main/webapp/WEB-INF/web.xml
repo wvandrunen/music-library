@@ -16,7 +16,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                org.musiclibfixer.config.SpringApplicationConfig
+                org.musiclibfixer.config.SpringWebApplicationConfig
             </param-value>
         </init-param>
     </servlet>

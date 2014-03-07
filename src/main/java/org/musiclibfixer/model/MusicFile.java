@@ -13,6 +13,7 @@ public class MusicFile {
     private String artist;
     private String releaseTitle;
     private String path;
+    private String filename;
 
     public MusicFile() {
     }
@@ -132,5 +133,13 @@ public class MusicFile {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }
