@@ -29,6 +29,7 @@ dependencies {
             'log4j:log4j:1.2.6',
             'org.slf4j:jcl-over-slf4j:1.7.6',
             'org.slf4j:slf4j-api:1.7.6',
+            'org.codehaus.jackson:jackson-mapper-asl:1.9.13',
             [group: 'commons-io', name : 'commons-io',  version: '2.2'],
             [group: 'org.mongodb', name: 'mongo-java-driver', version: '2.11.4']
     )

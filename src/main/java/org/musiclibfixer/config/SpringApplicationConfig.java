@@ -17,7 +17,7 @@ import static java.util.Arrays.asList;
 
 @Configuration
 @ComponentScan({"org.musiclibfixer"})
-public class SpringApplicationConfig extends WebMvcConfigurerAdapter {
+public class SpringApplicationConfig {
 
     public @Bean Morphia createMorphia() {
         return new Morphia().mapPackage("org.musiclibfixer");
@@ -25,7 +25,7 @@ public class SpringApplicationConfig extends WebMvcConfigurerAdapter {
 
     public @Bean
     Mongo createMongo() throws UnknownHostException {
-        return createLocalMongoClient();
+        return createRemoteMongoClient();
     }
 
     private Mongo createRemoteMongoClient() throws UnknownHostException {

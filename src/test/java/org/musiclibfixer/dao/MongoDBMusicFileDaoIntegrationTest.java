@@ -5,10 +5,10 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mongodb.morphia.Key;
+import org.mongodb.morphia.Morphia;
 import org.musiclibfixer.config.MongoCollectionNames;
 import org.musiclibfixer.config.SpringApplicationConfig;
 import org.musiclibfixer.model.MusicFile;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.net.UnknownHostException;
 
@@ -24,17 +24,16 @@ public class MongoDBMusicFileDaoIntegrationTest {
 
     @BeforeClass
     public static void setUp() throws UnknownHostException {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringApplicationConfig.class);
-        ctx.register(MongoDBMusicFileDao.class, SpringApplicationConfig.class);
+        SpringApplicationConfig springApplicationConfig = new SpringApplicationConfig();
 
-        musicFileDao = ctx.getBean(MongoDBMusicFileDao.class);
-        mongo = ctx.getBean(MongoClient.class);
+        mongo = (MongoClient) springApplicationConfig.createMongo();
+        musicFileDao = new MongoDBMusicFileDao(mongo, new Morphia());
+
     }
 
     @After
     public void tearDown() {
         mongo.getDB("music-db").getCollection(MongoCollectionNames.MUSIC_COLLECTION_NAME_INTEGRATION_TEST).drop();
-
     }
 
     @Test
