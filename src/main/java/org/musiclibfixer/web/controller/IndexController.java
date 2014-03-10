@@ -29,7 +29,6 @@ public class IndexController {
         }
 
         QueryPager<MusicFile> queryPager = mongoDBMusicFileDao.getAll();
-
         return queryPager.getPage(page);
     }
 

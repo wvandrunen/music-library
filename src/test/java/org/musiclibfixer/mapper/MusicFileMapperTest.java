@@ -19,7 +19,7 @@ public class MusicFileMapperTest {
     public void setUp() throws InvalidDataException, IOException, UnsupportedTagException {
         mp3File = Mockito.mock(Mp3File.class);
 
-        Mockito.when(mp3File.getFilename()).thenReturn("Test Filename");
+        Mockito.when(mp3File.getFilename()).thenReturn("c:\\dir\\file.mp3");
         Mockito.when(mp3File.getId3v2Tag()).thenReturn(createID3v2Tag());
 
         musicFileMapper = new MusicFileMapper();
@@ -46,7 +46,14 @@ public class MusicFileMapperTest {
     @Test
     public void whenMappingFilePathGivenMp3FileWithFilePathThenMapFilePath() {
         MusicFile musicFile = musicFileMapper.map(mp3File);
-        assertThat(musicFile.getPath()).isNotNull();
+        assertThat(musicFile.getPath()).isEqualTo("dir\\");
+    }
+
+
+    @Test
+    public void whenMappingFilenameGivenMp3FileWithFilenameThenMapFilename() {
+        MusicFile musicFile = musicFileMapper.map(mp3File);
+        assertThat(musicFile.getFilename()).isEqualTo("file.mp3");
     }
 
     private ID3v2 createID3v2Tag() {
