@@ -8,4 +8,4 @@ app.controller('MainCtrl', ['$scope', function ($scope) {
 		}
   }]);
 
-app.controller('ContactCtrl', ['$scope', function ($scope) {} ] );
+app.controller('ContactCtrl', ['$scope', function ($scope) { alert ('hello'); } ] );
