@@ -4,8 +4,6 @@ apply plugin: "sonar-runner"
 apply plugin: "war"
 apply plugin: "jetty"
 
-buildDir = 'target'
-
 task wrapper(type: Wrapper) {
     gradleVersion = '1.7'
 }
