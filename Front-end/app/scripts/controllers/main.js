@@ -7,5 +7,3 @@ app.controller('MainCtrl', ['$scope', function ($scope) {
 			alert('hello test');
 		}
   }]);
-
-app.controller('ContactCtrl', ['$scope', function ($scope) { alert ('hello'); } ] );

@@ -1,6 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'application'
-apply plugin: "sonar-runner"
+//apply plugin: "sonar-runner"
 apply plugin: "war"
 apply plugin: "jetty"
 

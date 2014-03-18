@@ -3,4 +3,4 @@
 target/
 build/
 gradlew
-music-library-fixer.iml
+*.iml

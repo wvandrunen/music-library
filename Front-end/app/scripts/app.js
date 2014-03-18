@@ -1,5 +1,6 @@
 'use strict';
 
+
 angular.module('frontEndApp', [
   'ngCookies',
   'ngResource',
@@ -7,16 +8,15 @@ angular.module('frontEndApp', [
   'ngRoute'
 ])
   .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+    $routeProvider.when('/contact', {
+		templateUrl : 'views/contact.html',
+		controller : 'ContactcontrollerCtrl'
+	  });
+	$routeProvider.when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
-      })
-	  .when('/contact', {
-		templateUrl : 'views/contact.html',
-		controller : 'ContactCtrl'
-	  })
-      .otherwise({
+      });
+    $routeProvider.otherwise({
         redirectTo: '/'
       });
   }]);
