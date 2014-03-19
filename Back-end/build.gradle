@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: "war"
 apply plugin: "jetty"
+apply plugin: 'maven'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.7'
@@ -13,6 +14,9 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
+
+group = 'myGroup'
+version = '0.1-SNAPSHOT'
 
 dependencies {
 
@@ -30,7 +34,8 @@ dependencies {
             'org.slf4j:slf4j-api:1.7.6',
             'org.codehaus.jackson:jackson-mapper-asl:1.9.13',
             [group: 'commons-io', name : 'commons-io',  version: '2.2'],
-            [group: 'org.mongodb', name: 'mongo-java-driver', version: '2.11.4']
+            [group: 'org.mongodb', name: 'mongo-java-driver', version: '2.11.4'],
+			'commons-lang:commons-lang:2.3'
     )
 
     compile('org.springframework:spring-context:4.0.0.RELEASE') {
