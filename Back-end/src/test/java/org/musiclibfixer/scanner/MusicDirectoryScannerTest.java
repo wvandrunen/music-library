@@ -53,10 +53,10 @@ public class MusicDirectoryScannerTest {
 
         List<MusicDirectory> directoriesWithMusicFiles = musicDirectoryScanner.findDirectoriesContainingMusicFiles(basePath);
 
-        assertThat(directoriesWithMusicFiles.get(0).toString()).isEqualToIgnoringCase("MusicDirectory{Amout of Music files found = 1, path=C:\\project\\music-library-fixer\\src\\test\\resources\\test-directory2}\n");
+        assertThat(directoriesWithMusicFiles.get(0).toString()).isEqualToIgnoringCase("MusicDirectory{Amout of Music files found = 1, path=.\\src\\test\\resources\\test-directory2}\n");
     }
 
     private Path createPath() {
-        return FileSystems.getDefault().getPath("C:\\project\\music-library-fixer\\src\\test\\resources");
+        return FileSystems.getDefault().getPath(".\\src\\test\\resources");
     }
 }
