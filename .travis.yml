@@ -1,2 +1,4 @@
 ﻿language: java
-before_install: Back-end
+before_install: cd Back-end
+jdk:
+  - openjdk8
