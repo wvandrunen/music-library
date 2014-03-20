@@ -57,6 +57,6 @@ public class MusicDirectoryScannerTest {
     }
 
     private Path createPath() {
-        return FileSystems.getDefault().getPath(".\\src\\test\\resources");
+        return FileSystems.getDefault().getPath("./src/test/resources");
     }
 }

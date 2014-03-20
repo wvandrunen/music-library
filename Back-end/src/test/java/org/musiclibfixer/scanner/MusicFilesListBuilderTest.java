@@ -33,6 +33,6 @@ public class MusicFilesListBuilderTest {
     }
 
     private Path createPath() {
-        return FileSystems.getDefault().getPath(".\\src\\test\\resources");
+        return FileSystems.getDefault().getPath("./src/test/resources");
     }
 }
