@@ -1,4 +1,4 @@
 ﻿language: java
 before_install: "cd Back-end"
 jdk:
-  - openjdk8
+  - oraclejdk8
