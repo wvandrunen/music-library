@@ -3,7 +3,7 @@ package org.musiclibfixer.model;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-@Entity
+@Entity(value="music-files", noClassnameStored = true)
 public class MusicFile {
 
     @Id
