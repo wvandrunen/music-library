@@ -2,5 +2,6 @@
 before_install: 
  - cd Back-end
  - ls
+script: mvn install
 jdk:
   - oraclejdk8
