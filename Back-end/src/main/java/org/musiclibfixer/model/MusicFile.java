@@ -25,11 +25,6 @@ public class MusicFile {
         this.path = path;
     }
 
-
-
-
-
-
     /*
     private String releaseArtist= "";
     private String releaseDate= "";

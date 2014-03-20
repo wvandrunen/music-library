@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 import java.net.UnknownHostException;
 
 @Component
-public class MongoDBMusicFileDao extends BasicDAO<MusicFile, ObjectId> {
+public class MongoDBMusicFileDao extends AbstractMongoDbDao<MusicFile, ObjectId> {
 
     private int pageSize = 20;
 
     @Autowired
-    public MongoDBMusicFileDao(Mongo mongo, Morphia morphia) throws UnknownHostException {
-        super(mongo, morphia, "music-db");
+    public MongoDBMusicFileDao(Mongo mongo, Morphia morphia, String collectionName) throws UnknownHostException {
+        super(mongo, morphia, collectionName);
     }
 
     public QueryPager<MusicFile> getAll() {

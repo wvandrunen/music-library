@@ -28,7 +28,7 @@ public class MongoDBMusicFileDaoIntegrationTest {
         SpringApplicationConfig springApplicationConfig = new SpringApplicationConfig();
 
         mongo = (MongoClient) springApplicationConfig.createMongo();
-        musicFileDao = new MongoDBMusicFileDao(mongo, new Morphia());
+        musicFileDao = new MongoDBMusicFileDao(mongo, new Morphia(), MongoCollectionNames.MUSIC_COLLECTION_NAME_INTEGRATION_TEST);
 
     }
 
@@ -37,18 +37,12 @@ public class MongoDBMusicFileDaoIntegrationTest {
         mongo.getDB("music-db").getCollection(MongoCollectionNames.MUSIC_COLLECTION_NAME_INTEGRATION_TEST).drop();
     }
 
-    @Test
     public void whenMusicFileInsertedGivenMusicFileThenSavedToMongoDB() {
         MusicFile musicFile = new MusicFile("Sick Again", "Led Zeppelin", "Physical Graffiti", "File Path");
 
         Key<MusicFile> musicFileWithObjectId = musicFileDao.save(musicFile);
 
         assertThat(musicFileWithObjectId.getId()).isNotNull();
-    }
-
-    @Test
-    public void getAllShouldReturnOneMusicFile() {
-        //assertThat(musicFileDao.getAll().getPageCount()).isEqualTo(1);
     }
 
 }

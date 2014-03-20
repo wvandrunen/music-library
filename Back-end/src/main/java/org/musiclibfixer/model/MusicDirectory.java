@@ -25,11 +25,4 @@ public class MusicDirectory {
         return path;
     }
 
-    @Override
-    public String toString() {
-        return "MusicDirectory{" +
-                "Amout of Music files found = " + musicFiles.size() +
-                ", path=" + path +
-                "}\n";
-    }
 }
