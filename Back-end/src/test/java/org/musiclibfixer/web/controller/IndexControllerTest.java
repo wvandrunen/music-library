@@ -42,7 +42,7 @@ public class IndexControllerTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void indexShouldThrowIllegalArgumentExceptionWhenPageIsLowerThenOne () {
+    public void indexShouldThrowIllegalArgumentExceptionWhenPageIsLowerThenOne() {
         indexController.index(0);
     }
 

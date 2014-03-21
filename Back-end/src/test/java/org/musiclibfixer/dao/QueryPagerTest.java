@@ -20,7 +20,7 @@ public class QueryPagerTest {
 
         Query<MusicFile> query = Mockito.mock(Query.class);
 
-        Mockito.when(query.offset(page*pageSize)).thenReturn(query);
+        Mockito.when(query.offset(page * pageSize)).thenReturn(query);
         Mockito.when(query.limit(pageSize)).thenReturn(query);
         Mockito.when(query.asList()).thenReturn(mockedList);
 

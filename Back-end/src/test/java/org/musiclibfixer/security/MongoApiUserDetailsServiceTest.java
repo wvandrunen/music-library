@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.musiclibfixer.dao.MongoDBUserDao;
 
-public class MongoUserDetailsServiceTest {
+public class MongoApiUserDetailsServiceTest {
 
     private MongoUserDetailsService mongoUserDetailsService;
     private MongoDBUserDao mongoDBUserDao;

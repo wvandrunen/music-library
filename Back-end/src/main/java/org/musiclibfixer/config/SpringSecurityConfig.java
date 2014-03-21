@@ -1,9 +1,9 @@
 package org.musiclibfixer.config;
 
-import org.musiclibfixer.security.MongoUserDetailsService;
+import org.musiclibfixer.security.ApplicationAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,20 +11,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
+@ComponentScan(basePackages = "org.musiclibfixer")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private MongoUserDetailsService mongoUserDetailsService;
-
     @Autowired
-    public SpringSecurityConfig(MongoUserDetailsService mongoUserDetailsService) {
-        this.mongoUserDetailsService = mongoUserDetailsService;
-    }
+    private ApplicationAuthenticationProvider authenticationProvider;
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(mongoUserDetailsService);
-        auth.authenticationProvider(authenticationProvider);
+    @Override
+    protected void configure(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
+        authManagerBuilder.authenticationProvider(authenticationProvider);
     }
 
     @Override

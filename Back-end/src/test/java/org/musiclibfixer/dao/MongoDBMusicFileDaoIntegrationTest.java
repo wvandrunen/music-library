@@ -1,14 +1,12 @@
 package org.musiclibfixer.dao;
 
 import com.mongodb.MongoClient;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.Morphia;
-import org.musiclibfixer.config.MongoCollectionNames;
-import org.musiclibfixer.config.SpringApplicationConfig;
 import org.musiclibfixer.model.MusicFile;
 
 import java.net.UnknownHostException;
@@ -25,18 +23,18 @@ public class MongoDBMusicFileDaoIntegrationTest {
 
     @BeforeClass
     public static void setUp() throws UnknownHostException {
-        SpringApplicationConfig springApplicationConfig = new SpringApplicationConfig();
+        mongo = MongoDBIntegrationTestUtilities.createRemoteMongoClient();
 
-        mongo = (MongoClient) springApplicationConfig.createMongo();
-        musicFileDao = new MongoDBMusicFileDao(mongo, new Morphia(), MongoCollectionNames.MUSIC_COLLECTION_NAME_INTEGRATION_TEST);
-
+        musicFileDao = new MongoDBMusicFileDao(mongo, new Morphia(), "integration-test-db");
     }
 
     @AfterClass
     public static void tearDown() {
-        mongo.getDB("music-db").getCollection(MongoCollectionNames.MUSIC_COLLECTION_NAME_INTEGRATION_TEST).drop();
+        Datastore datastore = musicFileDao.getDatastore();
+        datastore.delete(datastore.createQuery(MusicFile.class));
     }
 
+    @Test
     public void whenMusicFileInsertedGivenMusicFileThenSavedToMongoDB() {
         MusicFile musicFile = new MusicFile("Sick Again", "Led Zeppelin", "Physical Graffiti", "File Path");
 

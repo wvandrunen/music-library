@@ -1,8 +1,9 @@
 package org.musiclibfixer.security;
 
 import org.musiclibfixer.dao.MongoDBUserDao;
+import org.musiclibfixer.model.ApiUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,8 @@ public class MongoUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return this.mongoDBUserDao.findOne("username", username);
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
+        ApiUser user = this.mongoDBUserDao.findOne("username", username);
+        return user;
     }
 }

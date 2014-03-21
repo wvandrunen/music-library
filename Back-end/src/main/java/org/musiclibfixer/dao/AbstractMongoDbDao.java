@@ -8,11 +8,8 @@ import java.net.UnknownHostException;
 
 abstract public class AbstractMongoDbDao<T, O> extends BasicDAO<T, O> {
 
-    private final String collectionName;
-
-    public AbstractMongoDbDao(Mongo mongo, Morphia morphia, String collectionName) throws UnknownHostException {
-        super(mongo, morphia, "music-db");
-        this.collectionName = collectionName;
+    public AbstractMongoDbDao(Mongo mongo, Morphia morphia, String dbName) throws UnknownHostException {
+        super(mongo, morphia, dbName);
     }
 
 

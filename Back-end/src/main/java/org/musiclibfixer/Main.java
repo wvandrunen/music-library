@@ -30,7 +30,7 @@ public class Main {
 
         long startScanning = System.currentTimeMillis();
         List<MusicDirectory> musicDirectories = musicDirectoryScanner.findDirectoriesContainingMusicFiles(FileSystems.getDefault().getPath("C:\\Users\\wvandrunen"));
-        logger.info("Scanning done... took ["+ (System.currentTimeMillis() - startScanning) + "] ms");
+        logger.info("Scanning done... took [" + (System.currentTimeMillis() - startScanning) + "] ms");
 
         musicDirectories.forEach(dir -> {
             dir.getMusicFiles().forEach(file -> {

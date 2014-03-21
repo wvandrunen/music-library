@@ -16,14 +16,14 @@ public class MusicDirectoryScanner {
 
         DirectoryStream<Path> directoryStream = Files.newDirectoryStream(basePath);
 
-        directoryStream.forEach( next -> {
+        directoryStream.forEach(next -> {
 
             MusicFilesListBuilder musicFilesListBuilder = new MusicFilesListBuilder();
 
             try {
                 Files.walkFileTree(next, musicFilesListBuilder);
 
-                if(musicFilesListBuilder.isMusicFilesFound()) {
+                if (musicFilesListBuilder.isMusicFilesFound()) {
                     MusicDirectory musicDirectory = new MusicDirectory();
 
                     musicDirectory.setPath(next);
@@ -32,7 +32,8 @@ public class MusicDirectoryScanner {
                     directoriesWithMusicFiles.add(musicDirectory);
                 }
 
-            } catch (IOException e) {}
+            } catch (IOException e) {
+            }
 
         });
 

@@ -28,6 +28,6 @@ public class QueryPager<T> {
 
     private int calculatePageCount() {
         long totalSize = query.countAll();
-        return (int)Math.ceil((double)totalSize / pageSize);
+        return (int) Math.ceil((double) totalSize / pageSize);
     }
 }

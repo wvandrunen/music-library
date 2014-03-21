@@ -1,7 +1,6 @@
 package org.musiclibfixer.mapper;
 
 import com.mpatric.mp3agic.Mp3File;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.musiclibfixer.model.MusicFile;
 

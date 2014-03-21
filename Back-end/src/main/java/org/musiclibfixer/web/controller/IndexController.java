@@ -21,10 +21,10 @@ public class IndexController {
         this.mongoDBMusicFileDao = mongoDBMusicFileDao;
     }
 
-    @RequestMapping(value="/", produces="application/json")
+    @RequestMapping(value = "/", produces = "application/json")
     @ResponseBody
     public List<MusicFile> index(@RequestParam(value = "page", defaultValue = "1") int page) {
-        if(page < 1) {
+        if (page < 1) {
             throw new IllegalArgumentException();
         }
 

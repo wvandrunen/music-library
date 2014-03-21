@@ -38,16 +38,16 @@ public class MusicFilesListBuilder extends SimpleFileVisitor<Path> {
             filesFound.add(file);
         });
 
-        list.stream().map( f -> {
+        list.stream().map(f -> {
             return new File(f);
         }).collect(Collectors.toList());
 
         filesFound.stream().filter(file -> !file.isDirectory() && file.getAbsolutePath().endsWith(FILE_EXTENSION))
-            .forEach(file -> {
-                LOG.debug("Checking file [" + file.getAbsolutePath() + "]");
-                File deeplink = new File(dir.toString() + "\\" + file.toString());
-                files.add(deeplink.getAbsolutePath());
-            });
+                .forEach(file -> {
+                    LOG.debug("Checking file [" + file.getAbsolutePath() + "]");
+                    File deeplink = new File(dir.toString() + "\\" + file.toString());
+                    files.add(deeplink.getAbsolutePath());
+                });
 
         if (files.size() > 0) {
             musicFilesFound = true;
