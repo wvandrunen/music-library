@@ -1,4 +1,4 @@
 ﻿language: java
-script: ./deploy.sh
+script: bash deploy.sh
 jdk:
   - oraclejdk8
