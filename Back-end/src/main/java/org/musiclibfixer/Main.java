@@ -32,31 +32,29 @@ public class Main {
         List<MusicDirectory> musicDirectories = musicDirectoryScanner.findDirectoriesContainingMusicFiles(FileSystems.getDefault().getPath("C:\\Users\\wvandrunen"));
         logger.info("Scanning done... took [" + (System.currentTimeMillis() - startScanning) + "] ms");
 
-        musicDirectories.forEach(dir -> {
-            dir.getMusicFiles().forEach(file -> {
-                try {
+        musicDirectories.forEach(dir -> dir.getMusicFiles().forEach(file -> {
+            try {
 
-                    long startReadingFile = System.currentTimeMillis();
+                long startReadingFile = System.currentTimeMillis();
 
-                    System.out.println("Search file in MongoDB instance... " + file);
-                    MusicFile musicFile = musicFileDao.findOne("path", file);
+                System.out.println("Search file in MongoDB instance... " + file);
+                MusicFile musicFile = musicFileDao.findOne("path", file);
 
-                    System.out.println("Mapping file... " + file);
-                    musicFile = musicFileMapper.map(new Mp3File(file));
+                System.out.println("Mapping file... " + file);
+                musicFile = musicFileMapper.map(new Mp3File(file));
 
-                    System.out.println("Saving file in MongoDB instance...");
-                    musicFileDao.save(musicFile);
+                System.out.println("Saving file in MongoDB instance...");
+                musicFileDao.save(musicFile);
 
-                    long endReadingFile = System.currentTimeMillis();
-                    long endWritingToMongo = System.currentTimeMillis();
+                long endReadingFile = System.currentTimeMillis();
+                long endWritingToMongo = System.currentTimeMillis();
 
-                    System.out.println("MusicFile [" + musicFile + "]");
-                    System.out.println("Reading file took [" + (endReadingFile - startReadingFile) + " ms]");
-                    System.out.println("Write file to MongoDB took [" + (endWritingToMongo - endReadingFile) + "ms]");
-                } catch (Exception e) {
-                    logger.error("Error while trying to insert [" + file + "]", e);
-                }
-            });
-        });
+                System.out.println("MusicFile [" + musicFile + "]");
+                System.out.println("Reading file took [" + (endReadingFile - startReadingFile) + " ms]");
+                System.out.println("Write file to MongoDB took [" + (endWritingToMongo - endReadingFile) + "ms]");
+            } catch (Exception e) {
+                logger.error("Error while trying to insert [" + file + "]", e);
+            }
+        }));
     }
 }

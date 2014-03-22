@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    private MongoDBMusicFileDao mongoDBMusicFileDao;
+    private final MongoDBMusicFileDao mongoDBMusicFileDao;
 
     @Autowired
     public IndexController(MongoDBMusicFileDao mongoDBMusicFileDao) {
@@ -29,6 +29,7 @@ public class IndexController {
         }
 
         QueryPager<MusicFile> queryPager = mongoDBMusicFileDao.getAll();
+        
         return queryPager.getPage(page);
     }
 

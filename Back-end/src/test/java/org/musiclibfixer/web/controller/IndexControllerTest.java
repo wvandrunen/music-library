@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 public class IndexControllerTest {
 
     private MongoDBMusicFileDao dao;
-    private QueryPager<MusicFile> queryPager;
+    private QueryPager queryPager;
     private IndexController indexController;
 
     @Before

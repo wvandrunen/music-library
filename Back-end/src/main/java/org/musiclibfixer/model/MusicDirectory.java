@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MusicDirectory {
 
-    private List<String> musicFiles = new ArrayList<String>();
+    private List<String> musicFiles = new ArrayList<>();
     private Path path;
 
     public void setPath(Path next) {

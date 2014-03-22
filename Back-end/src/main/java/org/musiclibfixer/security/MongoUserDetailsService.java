@@ -1,7 +1,6 @@
 package org.musiclibfixer.security;
 
 import org.musiclibfixer.dao.MongoDBUserDao;
-import org.musiclibfixer.model.ApiUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MongoUserDetailsService implements UserDetailsService {
 
-    private MongoDBUserDao mongoDBUserDao;
+    private final MongoDBUserDao mongoDBUserDao;
 
     @Autowired
     public MongoUserDetailsService(MongoDBUserDao mongoDBUserDao) {
@@ -20,7 +19,6 @@ public class MongoUserDetailsService implements UserDetailsService {
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        ApiUser user = this.mongoDBUserDao.findOne("username", username);
-        return user;
+        return this.mongoDBUserDao.findOne("username", username);
     }
 }

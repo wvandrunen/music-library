@@ -6,9 +6,9 @@ import java.util.List;
 
 public class QueryPager<T> {
 
-    private Query<T> query;
-    private int pageSize;
-    private int pageCount;
+    private final Query<T> query;
+    private final int pageSize;
+    private final int pageCount;
 
     public QueryPager(Query<T> query, int pageSize) {
         this.query = query;

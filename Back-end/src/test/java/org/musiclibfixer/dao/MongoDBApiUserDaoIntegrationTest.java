@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.Morphia;
+import org.musiclibfixer.config.MongoNames;
 import org.musiclibfixer.model.ApiUser;
 
 import java.net.UnknownHostException;
@@ -16,13 +17,12 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class MongoDBApiUserDaoIntegrationTest {
 
-    private static MongoClient mongo;
     private static MongoDBUserDao userDao;
 
     @BeforeClass
     public static void setUp() throws UnknownHostException {
-        mongo = MongoDBIntegrationTestUtilities.createRemoteMongoClient();
-        userDao = new MongoDBUserDao(mongo, new Morphia(), "integration-test-db");
+        MongoClient mongo = MongoDBIntegrationTestUtilities.createRemoteMongoClient();
+        userDao = new MongoDBUserDao(mongo, new Morphia(), MongoNames.INTEGRATION_TEST_DB);
     }
 
     @AfterClass

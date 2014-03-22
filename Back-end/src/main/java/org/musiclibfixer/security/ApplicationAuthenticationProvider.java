@@ -15,7 +15,7 @@ import java.util.Collection;
 @Component(value = "authenticationProvider")
 public class ApplicationAuthenticationProvider implements AuthenticationProvider {
 
-    public MongoUserDetailsService mongoUserDetailsService;
+    private final MongoUserDetailsService mongoUserDetailsService;
 
     @Autowired
     public ApplicationAuthenticationProvider(MongoUserDetailsService mongoUserDetailsService) {

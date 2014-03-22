@@ -14,7 +14,7 @@ public class ApiUser extends org.springframework.security.core.userdetails.User 
     @Id
     private ObjectId id;
 
-    public ApiUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public ApiUser(@SuppressWarnings("SameParameterValue") String username, @SuppressWarnings("SameParameterValue") String password, @SuppressWarnings("SameParameterValue") boolean enabled, @SuppressWarnings("SameParameterValue") boolean accountNonExpired, @SuppressWarnings("SameParameterValue") boolean credentialsNonExpired, @SuppressWarnings("SameParameterValue") boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     }
 

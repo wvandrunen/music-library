@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 
 public class MusicFilesListBuilder extends SimpleFileVisitor<Path> {
 
-    public static final String FILE_EXTENSION = ".mp3";
-    private static Logger LOG = LoggerFactory.getLogger(MusicFilesListBuilder.class);
+    private static final String FILE_EXTENSION = ".mp3";
+    private static final Logger LOG = LoggerFactory.getLogger(MusicFilesListBuilder.class);
     private boolean musicFilesFound = false;
-    private List<String> files;
+    private final List<String> files;
 
     public MusicFilesListBuilder() {
-        files = new ArrayList<String>();
+        files = new ArrayList<>();
     }
 
     @Override
@@ -31,16 +31,14 @@ public class MusicFilesListBuilder extends SimpleFileVisitor<Path> {
 
         List<String> list = Arrays.asList(dir.toFile().list());
 
-        List<File> filesFound = new ArrayList<File>();
+        List<File> filesFound = new ArrayList<>();
 
         list.forEach(fileInDirectory -> {
             File file = new File(fileInDirectory);
             filesFound.add(file);
         });
 
-        list.stream().map(f -> {
-            return new File(f);
-        }).collect(Collectors.toList());
+        list.stream().map(File::new).collect(Collectors.toList());
 
         filesFound.stream().filter(file -> !file.isDirectory() && file.getAbsolutePath().endsWith(FILE_EXTENSION))
                 .forEach(file -> {

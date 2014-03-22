@@ -12,7 +12,7 @@ import java.util.List;
 public class MusicDirectoryScanner {
 
     public List<MusicDirectory> findDirectoriesContainingMusicFiles(Path basePath) throws IOException {
-        List<MusicDirectory> directoriesWithMusicFiles = new ArrayList<MusicDirectory>();
+        List<MusicDirectory> directoriesWithMusicFiles = new ArrayList<>();
 
         DirectoryStream<Path> directoryStream = Files.newDirectoryStream(basePath);
 
@@ -32,8 +32,7 @@ public class MusicDirectoryScanner {
                     directoriesWithMusicFiles.add(musicDirectory);
                 }
 
-            } catch (IOException e) {
-            }
+            } catch (IOException e) {}
 
         });
 

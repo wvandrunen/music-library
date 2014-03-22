@@ -18,7 +18,7 @@ public class MusicFile {
     public MusicFile() {
     }
 
-    public MusicFile(String trackTitle, String artist, String releaseTitle, String path) {
+    public MusicFile(@SuppressWarnings("SameParameterValue") String trackTitle, @SuppressWarnings("SameParameterValue") String artist, @SuppressWarnings("SameParameterValue") String releaseTitle, @SuppressWarnings("SameParameterValue") String path) {
         this.trackTitle = trackTitle;
         this.artist = artist;
         this.releaseTitle = releaseTitle;
