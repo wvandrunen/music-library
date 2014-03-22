@@ -1,9 +1,9 @@
 package org.musiclibfixer.dao;
 
 import com.mongodb.Mongo;
+import config.MongoNames;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Morphia;
-import org.musiclibfixer.config.MongoNames;
 import org.musiclibfixer.model.ApiUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

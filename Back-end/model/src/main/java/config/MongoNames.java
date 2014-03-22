@@ -1,4 +1,4 @@
-package org.musiclibfixer.config;
+package config;
 
 public class MongoNames {
 

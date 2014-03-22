@@ -1,13 +1,13 @@
 package org.musiclibfixer.dao;
 
 import com.mongodb.MongoClient;
+import config.MongoNames;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.Morphia;
-import org.musiclibfixer.config.MongoNames;
 import org.musiclibfixer.model.MusicFile;
 
 import java.net.UnknownHostException;
